@@ -1,41 +1,28 @@
-# Compiled Lua sources
-luac.out
+local plr = game.Players.LocalPlayer
+local playergui = plr.PlayerGui
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+--Main
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+local scr = Istance.new("ScreenGui", playergui) 
+scr.Name = "Destroyer" 
 
-# Precompiled Headers
-*.gch
-*.pch
+local frame = Istance.new("Frame", scr) 
+frame.Name = "Main" 
+frame.Draggable = true
+frame.Color3 = Color3.FromRGB(153, 255, 204) 
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+local Button = Istance.new("Text Button", frame)
+Button.BackroundColor3 = Color3.FromRGB(153, 255, 204)  
+Button.Name = "Holder" 
+Button.Text = "Destroy Objects" 
+Button.TextSize = 16
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+--Function 
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+Button.Activated:Connect(function() 
+for i, Part in pairs(game.Workspace:GetChildren()) do
+   if Part:IsA("Model") or Part:IsA("Part") or Part:IsA("Folder") then
+      Part:Destroy() 
+   end
+end
+end) 
